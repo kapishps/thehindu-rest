@@ -18,4 +18,10 @@ public interface ArticlesRepository extends MongoRepository<Articles, String> {
 
     @Query("{city:'?0'}")
     List<Articles> findBy_city(String city);
+
+    @Query("{tags : { $all : ?0 }}")
+    List<Articles> findBy_tags(List<String> tags);
+
+    @Query("{categories : { $all : ?0 }}")
+    List<Articles> findBy_categories(List<String> categories);
 }

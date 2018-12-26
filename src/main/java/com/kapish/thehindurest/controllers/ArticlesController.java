@@ -36,4 +36,14 @@ public class ArticlesController {
     public List<Articles> getAllArticlesByCity(@PathVariable("city") String city) {
         return repository.findBy_city(city);
     }
+
+    @RequestMapping(value = "/getarticlesbytags", method = RequestMethod.POST)
+    public List<Articles> getAllArticlesByTags(@RequestBody List<String> tags) {
+        return repository.findBy_tags(tags);
+    }
+
+    @RequestMapping(value = "/getarticlesbycategories", method = RequestMethod.POST)
+    public List<Articles> getAllArticlesByCategories(@RequestBody List<String> categories) {
+        return repository.findBy_categories(categories);
+    }
 }
