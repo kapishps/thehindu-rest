@@ -9,6 +9,7 @@ public class Articles {
     @Id
     private ObjectId _id;
 
+    private String articleid;
     private String author;
     private String title;
     private String description;
@@ -20,8 +21,9 @@ public class Articles {
 
     public Articles() {}
 
-    public Articles(ObjectId _id, String author, String title, String description, String date, List tags, String city, List categories, String url) {
+    public Articles(ObjectId _id,String articleid, String author, String title, String description, String date, List tags, String city, List categories, String url) {
         this._id = _id;
+        this.articleid = articleid;
         this.author = author;
         this.title = title;
         this.description = description;
@@ -34,6 +36,10 @@ public class Articles {
 
     public ObjectId get_id() {
         return _id;
+    }
+
+    public String getArticleid() {
+        return articleid;
     }
 
     public String getAuthor() {
@@ -70,6 +76,10 @@ public class Articles {
 
     public void set_id(ObjectId _id) {
         this._id = _id;
+    }
+
+    public void setArticleid(String articleid) {
+        this.articleid = articleid;
     }
 
     public void setAuthor(String author) {
