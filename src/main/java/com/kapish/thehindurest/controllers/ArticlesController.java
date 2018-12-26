@@ -22,19 +22,9 @@ public class ArticlesController {
         return repository.findAll();
     }
 
-    @RequestMapping(value = "/getarticlesbyauthor/{author}", method = RequestMethod.GET)
-    public List<Articles> getAllArticlesByAuthor(@PathVariable("author") String author) {
-        return repository.findBy_author(author);
-    }
-
-    @RequestMapping(value = "/getarticlesbydate/{date}", method = RequestMethod.GET)
-    public List<Articles> getAllArticlesByDate(@PathVariable("date") String date) {
-        return repository.findBy_date(date);
-    }
-
-    @RequestMapping(value = "/getarticlesbycity/{city}", method = RequestMethod.GET)
-    public List<Articles> getAllArticlesByCity(@PathVariable("city") String city) {
-        return repository.findBy_city(city);
+    @RequestMapping(value = "/getarticlesbytitle/{title}", method = RequestMethod.GET)
+    public List<Articles> getAllArticlesByTitle(@PathVariable("title") String title) {
+        return repository.findBy_title(title);
     }
 
     @RequestMapping(value = "/getarticlesbytags", method = RequestMethod.POST)
@@ -47,8 +37,4 @@ public class ArticlesController {
         return repository.findBy_categories(categories);
     }
 
-    @RequestMapping(value = "/getauthorsbydate/{date}", method = RequestMethod.GET)
-    public List<Articles> getAllAuthorsByDate(@PathVariable("date") String date) {
-        return repository.findAuthorsBy_date(date);
-    }
 }

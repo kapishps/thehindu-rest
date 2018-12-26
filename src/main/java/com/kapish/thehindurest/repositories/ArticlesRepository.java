@@ -10,6 +10,12 @@ import java.util.List;
 public interface ArticlesRepository extends MongoRepository<Articles, String> {
     Articles findBy_id(ObjectId _id);
 
+    @Query("{title :'?0'}")
+    List<Articles> findBy_title(String title);
+
+    @Query("{articleid: { $in : ?0 }}")
+    List<Articles> findBy_articleid(List articleid);
+
     @Query("{tags : { $all : ?0 }}")
     List<Articles> findBy_tags(List<String> tags);
 
