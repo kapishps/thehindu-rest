@@ -46,4 +46,9 @@ public class ArticlesController {
     public List<Articles> getAllArticlesByCategories(@RequestBody List<String> categories) {
         return repository.findBy_categories(categories);
     }
+
+    @RequestMapping(value = "/getauthorsbydate/{date}", method = RequestMethod.GET)
+    public List<Articles> getAllAuthorsByDate(@PathVariable("date") String date) {
+        return repository.findAuthorsBy_date(date);
+    }
 }
