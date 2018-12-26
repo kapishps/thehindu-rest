@@ -13,7 +13,6 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
 public class ArticlesController {
     @Autowired
     private ArticlesRepository repository;
@@ -21,5 +20,20 @@ public class ArticlesController {
     @RequestMapping(value = "/allarticles", method = RequestMethod.GET)
     public List<Articles> getAllArticles() {
         return repository.findAll();
+    }
+
+    @RequestMapping(value = "/getarticlesbyauthor/{author}", method = RequestMethod.GET)
+    public List<Articles> getAllArticlesByAuthor(@PathVariable("author") String author) {
+        return repository.findBy_author(author);
+    }
+
+    @RequestMapping(value = "/getarticlesbydate/{date}", method = RequestMethod.GET)
+    public List<Articles> getAllArticlesByDate(@PathVariable("date") String date) {
+        return repository.findBy_date(date);
+    }
+
+    @RequestMapping(value = "/getarticlesbycity/{city}", method = RequestMethod.GET)
+    public List<Articles> getAllArticlesByCity(@PathVariable("city") String city) {
+        return repository.findBy_city(city);
     }
 }
