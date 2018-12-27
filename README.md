@@ -1,4 +1,4 @@
-##REST API's for The Hindu Archives
+## REST API's for The Hindu Archives
 
 ### Tech Stack
 * Java
@@ -24,6 +24,36 @@ mvn spring-boot:run
 - Search articles based on news categories:- POST http://localhost:8080/getarticlesbycategories
 
 Both the POST requests accept a List of Strings
+
+
+### DB Design
+values are representational
+- authors collection
+
+| author  |     articleids      |
+|---------|---------------------|
+| kapish  | [12345,12346,12347] |
+| kapish1 | [12349]             |
+
+- dates collection
+
+|    date    |     articleids      |
+|------------|---------------------|
+| 2018-12-26 | [12345,12346,12349] |
+| 2018-12-27 | [12347]             |
+
+- cities collection
+
+| city  |     articleids      |
+|-------|---------------------|
+| pune  | [12345,12346,12349] |
+| delhi | [12347]             |
+
+- articles collection
+
+| articleid | author | title | city |    date    |      tags       |   categories    |      url      |
+|-----------|--------|-------|------|------------|-----------------|-----------------|---------------|
+|     12345 | kapish | abc   | pune | 2018-12-26 | ["taga","tagb"] | ["cata","catb"] | linktoarticle |
 
 
 
