@@ -59,11 +59,11 @@ class Scraper(object):
                         )
                     for article in article_list:
                         yield {
-                            "categories": [section_text],
-                            "title": article.a.get_text().strip(),
-                            "url": article.a['href'],
-                            "articleid": self.get_article_id(article.a['href']),
-                            "date": st_date.strftime("%Y-%m-%d")
+                            "categories": [section_text.encode("utf8")],
+                            "title": article.a.get_text().replace(",","").strip().encode("utf8"),
+                            "url": article.a['href'].encode("utf8"),
+                            "articleid": self.get_article_id(article.a['href']).encode("utf8"),
+                            "date": st_date.strftime("%Y-%m-%d").encode("utf8")
                         }
             else:
                 print("Cannot get articles", self.__url)
@@ -99,15 +99,24 @@ class Scraper(object):
             author_a = d_soup.find('a', {'class': re.compile(r'auth-nm.')})
             city_div = d_soup.find('span', {'class': 'blue-color ksl-time-stamp'})
             city = city_div.get_text().strip().lower()
+
+            tags_a = d_soup.find('div', {'class': 'morein-tag-cont'}).findAll('a')
+            tags = []
+            for tag in tags_a:
+                tags.append(tag.contents[0].encode("utf8").lower())
+
             try:
                 author = author_a.get_text().strip()
                 return {
-                    "author" : author,
-                    "city" : city[:-1] }
-            except: return {"city" : city[:-1]}
+                    "author" : author.encode("utf8"),
+                    "city" : city[:-1].encode("utf8"),
+                    "tags" : tags}
+            except:
+                return {"city" : city[:-1].encode("utf8") , "tags" : tags}
+
 
 
 
 # scrapr = Scraper("2018-12-26", "2018-12-27")
 #
-# scrapr.get_author("https://www.thehindu.com/sport/tennis/roger-rafa-make-cilic-more-determined/article22347397.ece")
+# scrapr.get_author("https://www.thehindu.com/sport/other-sports/dashers-prevail-over-smashers/article22360987.ece")
